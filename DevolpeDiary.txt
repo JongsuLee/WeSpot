@@ -1,0 +1,5 @@
+"1일차" 
+
+Base 페이지 틀짜기: 로그인, 비로그인 상태에 따라 Header부분 변화
+Profile 모델 만들기: User 모델과 1:1 구조, image
+Sign-up 페이지 만들기: 페이지 틀과 구조는 만들었으나, 계속 Sign-up 페이지로 redirect됨 >> 원인규명 필요
