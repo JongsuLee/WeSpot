@@ -3,3 +3,8 @@
 Base 페이지 틀짜기: 로그인, 비로그인 상태에 따라 Header부분 변화
 Profile 모델 만들기: User 모델과 1:1 구조, image
 Sign-up 페이지 만들기: 페이지 틀과 구조는 만들었으나, 계속 Sign-up 페이지로 redirect됨 >> 원인규명 필요
+
+"2일차"
+
+Sign-up 페이지 수정: redirect 원인 발견(User.object.create_user() 내부 attribute 중 email을 eamil로 작성하여 인식을 못함)
+Main 페이지 수정: 배경화면 이미지 수정, 로그인 전, 후 디테일 CSS 변경

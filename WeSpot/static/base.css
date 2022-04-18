@@ -1,5 +1,99 @@
 * {
   margin: 0;
   padding: 0;
-  border: solid black 1px;
+  /* border: solid black 1px; */
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.header {
+  width: 100vw;
+  height: 20vh;
+  position: fixed;
+  background-image: url('we_spot.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.account {
+  position: relative;
+  width: 40%;
+  left: 58%;
+  top: 10px;
+  display: flex;
+  justify-content: right;
+}
+
+.account .login {
+  width: 60%;
+  height: 10%;
+  display: flex;
+}
+
+.account .id {
+  width: 40%;
+}
+
+.account .id input {
+  width: 80%;
+  height: 100%;
+}
+
+.account .password {
+  width: 40%;
+}
+
+.account .password input {
+  width: 80%;
+  height: 100%;
+}
+
+.account button {
+  width: 20%;
+}
+
+.account .welcome {
+  width: 75%;
+  height: 10%;
+  text-align: right;
+  color: bisque;
+}
+
+.account .logout {
+  width: 20%;
+}
+
+.account .logout button {
+  width: 70%;
+  height: 100%;
+}
+
+.account .sign_up {
+  width: 20%;
+}
+
+.account .sign_up button {
+  width: 70%;
+  height: 100%;
+}
+
+.profile {
+  position: relative;
+  top: calc(10px + 10%);
+  left: 90%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: black solid 1px;
+}
+
+.profile img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }

@@ -18,34 +18,29 @@
     {% if user.is_authenticated %}
 
       <div class="account">
-        <div class="login">{{user.username}} 님 환영합니다.</div>
-        <form action="post" class="logout">
+        <div class="welcome">{{user.username}} 님 환영합니다.</div>
+        <form action="{% url 'account:logout' %}" method="post" class="logout">
           {% csrf_token %}
           <button type="submit" class="">로그아웃</button>
         </form>
       </div>
 
       <a href="" class="profile">
-        <img src="" alt="Profile Image">
+        <img src="{{profile.0.image.url}}" alt="Profile Image">
       </a>
 
     {% else %}
 
       <div class="account">
-        <form action="post" class="login">
+        <form action="{% url 'account:login' %}" method="post" class="login">
           {% csrf_token %}
-          <div id="id">
-            <label for="id">
-              아이디
-            </label>
-            <input type="text" id="id" name="id">
+          <div class="id">
+            <input type="text" id="id" name="id" placeholder="아이디">
           </div>
 
-          <div id="password">
+          <div class="password">
             <label for="password">
-              비밀번호
-            </label>
-            <input type="password" id="password" name="password">
+            <input type="password" id="password" name="password" placeholder="비밀번호">
           </div>
           
           <button type="submit">로그인</button>
