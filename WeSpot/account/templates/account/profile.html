@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'account/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="profile">
+    <div class="profile_image">
+      {% if profile.0.image %}
+        <img src="{{profile.0.image.url}}" alt="ProfileImage">
+      {% endif %}
+    </div>
+
+    <div class="profile_information">
+      <h2>{{profile.0.user.first_name}} (ID: {{profile.0.user.username}})</h2>
+      <h3>{{profile.0.user.email}}</h3>
+      <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam odit, voluptatum dignissimos cupiditate officiis doloribus possimus distinctio voluptas, dolorem eius inventore esse a dolor officia iure aperiam minima soluta commodi?</div>
+    </div>
+  </div>
+  <div class="article_board">
+    <div class="navibar">
+      <a href="" class="link">
+        포스트
+      </a>
+      <a href="" class="link">
+        칼럼
+      </a>
+    </div>
+    <div class="posts">
+
+      <div class="post">
+        <div class="post_image">
+
+        </div>
+        <div class="post_info">
+          <div class="created_at"></div>
+          <div class="writer"></div>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post_image">
+
+        </div>
+        <div class="post_info">
+          <div class="created_at"></div>
+          <div class="writer"></div>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post_image">
+
+        </div>
+        <div class="post_info">
+          <div class="created_at"></div>
+          <div class="writer"></div>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post_image">
+
+        </div>
+        <div class="post_info">
+          <div class="created_at"></div>
+          <div class="writer"></div>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post_image">
+
+        </div>
+        <div class="post_info">
+          <div class="created_at"></div>
+          <div class="writer"></div>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post_image">
+
+        </div>
+        <div class="post_info">
+          <div class="created_at"></div>
+          <div class="writer"></div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </div>
+{% endblock %}

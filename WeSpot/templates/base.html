@@ -25,7 +25,7 @@
         </form>
       </div>
 
-      <a href="" class="profile">
+      <a href="{% url 'account:profile' user.username %}" class="profile_link">
         <img src="{{profile.0.image.url}}" alt="Profile Image">
       </a>
 

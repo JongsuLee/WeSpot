@@ -8,3 +8,7 @@ Sign-up 페이지 만들기: 페이지 틀과 구조는 만들었으나, 계속 Sign-up 페이지로 redi
 
 Sign-up 페이지 수정: redirect 원인 발견(User.object.create_user() 내부 attribute 중 email을 eamil로 작성하여 인식을 못함)
 Main 페이지 수정: 배경화면 이미지 수정, 로그인 전, 후 디테일 CSS 변경
+
+"3일차"
+
+Profile 페이지 만들기: profile 정보 표시, 게시글 정보 표시, navigation bar sticky설정
