@@ -69,7 +69,12 @@
 
 .post_image {
   width: 300px;
-  height: 300px;
+  height: 300px;  
+  overflow: hidden;
+}
+
+.post_image img {
+  object-fit: contain;
 }
 
 .post_info  {

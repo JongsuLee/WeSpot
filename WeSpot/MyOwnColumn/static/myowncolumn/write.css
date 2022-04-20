@@ -1,0 +1,36 @@
+* {
+  border: black solid 1px;
+}
+
+.post_write {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.post_write #post_images {
+  margin-top: 20vh;
+}
+
+.post_write .preview_images {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.post_write .post_description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+}
+
+.post_write .post_description .description {
+  width: 80%;
+  height: 20vh;
+  margin-bottom: 20px;
+}
+
+.post_write .post_description .tag {
+  width: 80%;
+  height: 5vh;
+}

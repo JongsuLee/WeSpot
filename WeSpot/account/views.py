@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Profile
+from MyOwnColumn.models import Post
 
 # Create your views here.
 
@@ -62,9 +63,13 @@ def logout(request):
 def profile(request, username):
   user = User.objects.get(username=username)
   profile = Profile.objects.filter(user=user)
-  
+  posts = Post.objects.filter(user=user)
+
   context = {
     'profile': profile,
+    'posts': posts,
   }
+  print(dir(posts[0]))
+  print(dir(posts[0].image_set.first().image))
 
   return render(request, 'account/profile.html', context)
