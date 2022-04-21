@@ -1,17 +1,20 @@
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from account.models import Profile
 from .models import Post, Image, Tag  
 
 # Create your views here.
 
-def write(request):
+def post_write(request):
   profile = Profile.objects.filter(user=request.user)
   context = {
     'profile': profile,
   }
 
   if request.method == 'POST':
-    post = Post(user=request.user, description=request.POST.get('description'))
+    profile = Profile.objects.get(user=request.user)
+    print('profile:', profile)
+    post = Post(profile=profile, description=request.POST.get('description'), created_at=timezone.now())
     post.save()
     
     images = request.FILES.getlist('post_images')
@@ -29,6 +32,17 @@ def write(request):
         tg.save()
         
     
-    return redirect('account:profile', request.user.username)
+    return redirect('myowncolumn:post_detail', post.id)
 
-  return render(request, 'myowncolumn/write.html', context)
+  return render(request, 'myowncolumn/post_write.html', context)
+
+def post_detail(request, post_id):
+  post = Post.objects.get(id=post_id)
+  profile = Profile.objects.filter(user=request.user)  
+
+  context = {
+    'post': post,
+    'profile': profile,
+  }
+
+  return render(request, 'myowncolumn/post_detail.html', context)

@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from account.models import Profile
+
 # Create your models here.
 
 def image_upload_path(instance, filename):
@@ -9,8 +11,9 @@ def image_upload_path(instance, filename):
 
 class Post(models.Model):
 
-  user = models.ForeignKey(User, on_delete=models.PROTECT)
+  profile = models.ForeignKey(Profile, on_delete=models.PROTECT)
   description = models.CharField(max_length=200, blank=True)
+  created_at = models.TimeField(null=True)
 
 class Image(models.Model):
 

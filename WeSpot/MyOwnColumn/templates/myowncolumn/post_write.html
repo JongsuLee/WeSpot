@@ -4,13 +4,13 @@
 
 
 {% block style %}
- <link rel="stylesheet" href="{% static 'myowncolumn/write.css' %}">
+ <link rel="stylesheet" href="{% static 'myowncolumn/post_write.css' %}">
 {% endblock %}
 
 
 {% block content %}
 
-  <form action="{% url 'myowncolumn:write' %}" method="post" enctype="multipart/form-data" class="post_write">
+  <form action="{% url 'myowncolumn:post_write' %}" method="post" enctype="multipart/form-data" class="post_write">
     {% csrf_token %}
 
     <input type="file" name="post_images" id="post_images" multiple>
