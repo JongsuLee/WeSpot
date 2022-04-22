@@ -32,12 +32,12 @@
     <div class="posts">
 
       <div class="post">
-        <div class="post_image">
-          <img src="{{posts.0.image_set.first.image.url}}" alt="img">
-        </div>
+        <a href="{% url 'myowncolumn:post_detail' posts.0.id%}" class="post_image">
+          <img src="{{posts.1.image_set.all.0.image.url}}" alt="img">
+        </a>
         <div class="post_info">
-          <div class="created_at"></div>
-          <div class="writer"></div>
+          <div class="created_at">{{posts.0.created_at}}</div>
+          <div class="writer">{{posts.0.profile.user.username}}</div>
         </div>
       </div>
 

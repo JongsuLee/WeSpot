@@ -13,7 +13,6 @@ def post_write(request):
 
   if request.method == 'POST':
     profile = Profile.objects.get(user=request.user)
-    print('profile:', profile)
     post = Post(profile=profile, description=request.POST.get('description'), created_at=timezone.now())
     post.save()
     

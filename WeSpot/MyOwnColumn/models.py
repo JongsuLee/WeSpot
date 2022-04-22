@@ -1,13 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-
 from account.models import Profile
 
 # Create your models here.
 
 def image_upload_path(instance, filename):
 
-  return '{}/{}'.format(instance.post.user.username, filename)
+  return '{}/{}'.format(instance.post.profile.user.username, filename)
 
 class Post(models.Model):
 

@@ -23,3 +23,7 @@ Post 쓰기 페이지 만들기: 사진 여러장 첨부, 설명 글, 태그 입력 및 저장 >> 첨부 사
 MyOwnColumn - Post 읽기 페이기 만들기: Post 내 상세 내용 위치 불러오기 >> 첨부 사진 좌, 우 넘기기 기능 필요, 댓글 작성 기능 필요
                       Post Model 내 profile 내용 수정 >> No Such column 문제 발생... Profile_id를 받지 못함
 
+"6일차"
+MyOwnColumn - Post Model 내 profile_id column 문제 해결 >> Migration log, sqllite db 삭제 (Migration log가 있는 상태로 sqllite db 삭제시, log를 따라 수정내용 변경이 안될 수 있음)
+                      Post-Image Model 간 역참조 문제 해결 >> posts.0.image_set.all.0.image.url
+     

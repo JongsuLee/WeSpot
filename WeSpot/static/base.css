@@ -11,10 +11,10 @@ body {
 
 .header {
   width: 100vw;
-  height: 20vh;
+  height: 27vh;
   position: fixed;
   background-image: url('we_spot.png');
-  background-position: center;
+  background-position:center;
   background-repeat: no-repeat;
   background-size: cover;
 }
