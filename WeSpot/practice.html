@@ -1,37 +1,11 @@
-{% extends 'base.html' %}
-
-{% load static %}
-
-
-{% block style %}
- <link rel="stylesheet" href="{% static 'myowncolumn/post_write.css' %}">
-{% endblock %}
+<input type="file" onchange="showPreview(event); showSlide();" multiple>
+<div class="preview">
+  <div class="pre" onclick="plusSlide(-1)">&lt;</div>
+  <div class="images_frame">사진</div>
+  <div class="next" onclick="plusSlide(1)">&gt;</div>
+</div>  
 
 
-{% block content %}
-
-  <form action="{% url 'myowncolumn:post_write' %}" method="post" enctype="multipart/form-data" class="post_write">
-    {% csrf_token %}
-
-    <input type="file" name="post_images" id="post_images" onchange="showPreview(event); showSlide()" multiple>
-    
-    <div class="preview_images">
-      <div class="prev" onclick="plusSlide(-1)">&lt;</div>
-      <div class="images_frame"></div>
-      <div class="next" onclick="plusSlide(1)">&gt;</div>
-    </div>
-
-    <div class="post_description">
-      <textarea name="description" class="description" placeholder="간략한 글을 작성해주세요.(100자이내)"></textarea>
-      <input type="text" placeholder="#해쉬태그" name="tag" class="tag">
-      <button type="submit">작성하기</button>
-    </div>
-
-  </form>
-
-{% endblock %}
-
-{% block script %}
 <script>
   function showPreview(event) {
     if (event.target.files.length > 0) {
@@ -74,4 +48,3 @@
   }
   
 </script>
-{% endblock %}

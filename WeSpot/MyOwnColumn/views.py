@@ -37,11 +37,13 @@ def post_write(request):
 
 def post_detail(request, post_id):
   post = Post.objects.get(id=post_id)
-  profile = Profile.objects.filter(user=request.user)  
+  profile = Profile.objects.filter(user=request.user)
+  tags = Tag.objects.filter(post=post)  
 
   context = {
     'post': post,
     'profile': profile,
+    'tags': tags,
   }
 
   return render(request, 'myowncolumn/post_detail.html', context)

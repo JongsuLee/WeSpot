@@ -16,7 +16,7 @@
     <div class="post_detail">
       <div class="post_info">
         <div class="post_writer">
-          <img src="{{post.profile}}" alt="" class="writer_porfile">
+          <img src="{{post.profile.image.url}}" alt="" class="writer_porfile">
 
           <h3 class="writer_name">
             {{post.profile.user.username}}
@@ -29,16 +29,22 @@
 
       <div class="post_body">
         <div class="post_images">
-
+          <div class="prev" onclick="plusSlide(-1)">&lt;</div>
+          {% for image in post.image_set.all %}
+            <img src="{{image.image.url}}" alt="사진" class="image">
+          {% endfor %}
+          <div class="next" onclick="plusSlide(1)">&gt;</div>
         </div>
         
         <div class="post_description">
           <div class="description">
-
+            {{post.description}}
           </div>
           
           <div class="tags">
-
+            {% for tag in tags %}
+             #{{tag.tag}} <span> </span>
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -53,5 +59,28 @@
 
 
 {% block script %}
+  <script>
+    let slideIndex = 0
+    showSlide(slideIndex)
 
+    function showSlide(n) {
+      let images = document.getElementsByClassName('image')
+      if (n > images.length - 1) {slideIndex = 0}
+      if (n < 0) {slideIndex = images.length - 1}
+      if (images.length > 0) {
+        for (let i = 0; i < images.length; i ++) {
+        images[i].style.display = 'none'
+        }
+        images[slideIndex].style.display = 'block'
+        console.log(slideIndex)
+        console.log(images[slideIndex].src)
+      }
+    }
+      
+    function plusSlide(n) {
+      slideIndex += n
+      showSlide(slideIndex)
+    }
+    
+  </script>
 {% endblock %}

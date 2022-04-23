@@ -26,4 +26,7 @@ MyOwnColumn - Post 읽기 페이기 만들기: Post 내 상세 내용 위치 불러오기 >> 첨부 �
 "6일차"
 MyOwnColumn - Post Model 내 profile_id column 문제 해결 >> Migration log, sqllite db 삭제 (Migration log가 있는 상태로 sqllite db 삭제시, log를 따라 수정내용 변경이 안될 수 있음)
                       Post-Image Model 간 역참조 문제 해결 >> posts.0.image_set.all.0.image.url
-     
+
+"7일차"
+MyOwnColumn - Post 쓰기 페이지 JS 함수 추가: showPreview - 업로드 이미지 미리보기, showSlide - 이미지 파일 슬라이드
+                      Post 읽기 페이지 JS 함수 추가: showSlide - 이미지 파일 슬라이드
