@@ -47,3 +47,33 @@ def post_detail(request, post_id):
   }
 
   return render(request, 'myowncolumn/post_detail.html', context)
+
+def post_edit(request, post_id):
+  profile = Profile.objects.filter(user=request.user)
+  post = Post.objects.get(id=post_id)
+  tags = Tag.objects.filter(post=post)
+
+  context = {
+    'profile': profile,
+    'post': post,
+    'tags': tags
+  }
+
+  if request.method == 'POST':
+    images = request.FILES.getlist('post_images')
+    description = request.POST.get('description')
+    tags = request.POST.get('tag')
+    if tags:
+      tags = tags.split('#')[1:]
+    post.description = description
+    post.save()
+    for image in images:
+      img = Image(post=post, image=image)
+      img.save()
+    for tag in tags:
+      tg = Tag(post=post, tag=tag)
+      tg.save()
+    
+    return redirect('myowncolumn:post_detail', post_id=post.id)
+
+  return render(request, 'myowncolumn/post_edit.html', context)

@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block style %}
+ <link rel="stylesheet" href="{% static 'myowncolumn/post_edit.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+  <form action="{% url 'myowncolumn:post_edit' post.id %}" method="post" enctype="multipart/form-data" class="post_write">
+    {% csrf_token %}
+
+    <input type="file" name="post_images" id="post_images" onchange="showPreview(event); showSlide()" multiple placeholder="추가 사진 입력">
+    
+    <div class="frames">
+      <div class="frame">
+        <h2>신규 사진 업로드</h2>
+        <div class="preview_images">
+          <div class="prev" onclick="plusSlide(-1)">&lt;</div>
+          <div class="images_frame"></div>
+          <div class="next" onclick="plusSlide(1)">&gt;</div>
+        </div>  
+      </div>
+      
+      <div class="frame">
+        <h2>업로드된 사진</h2>
+        <div class="uploaded_images">
+          <div class="prev" onclick="plusUploadedSlide(-1)">&lt;</div>
+          <div class="uploaded_images_frame">
+            {% for image in post.image_set.all %}
+              <img src="{{image.image.url}}" alt="" class="uploaded_image">
+            {% endfor %}
+          </div>
+          <div class="next" onclick="plusUploadedSlide(1)">&gt;</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="post_description">
+      <textarea name="description" class="description" placeholder="간략한 글을 작성해주세요.(100자이내)">
+        {{post.description}}
+      </textarea>
+      <div class="tags">
+        {% for tag in tags %}
+         <span>#{{tag.tag}} </span>
+        {% endfor %}
+      </div>
+      <input type="text" placeholder="#해쉬태그" name="tag" class="tag">
+      <button type="submit">수정하기</button>
+    </div>
+
+  </form>
+
+{% endblock %}
+
+{% block script %}
+<script>
+  function showPreview(event) {
+    if (event.target.files.length > 0) {
+      let frame = document.getElementsByClassName('images_frame')
+      console.log(frame[0].textContent)
+      let images = event.target.files
+      for (let i = 0; i < images.length; i ++) {
+        let src = URL.createObjectURL(images[i])
+        let image = document.createElement('img')
+        image.id = 'image' + i
+        image.className = 'image'
+        image.name = 'image'
+        image.src = src
+        frame[0].append(image)
+      }
+    }
+  }
+
+  let slideIndex = 0
+  showSlide(slideIndex)
+
+  function showSlide(n) {
+    let frame = document.getElementsByClassName('images_frame')
+    let images = frame[0].getElementsByClassName('image')
+    if (n > images.length - 1) {slideIndex = 0}
+    if (n < 0) {slideIndex = images.length - 1}
+    if (images.length > 0) {
+      for (let i = 0; i < images.length; i ++) {
+      images[i].style.display = 'none'
+      }
+      images[slideIndex].style.display = 'block'
+    }
+  }
+    
+  function plusSlide(n) {
+    slideIndex += n
+    showSlide(slideIndex)
+  }
+  
+  // 기존 이미지 함수
+
+  let uploadedSlideIndex = 0
+  showUploadedSlide(uploadedSlideIndex)
+
+  function showUploadedSlide(n) {
+    let frame = document.getElementsByClassName('uploaded_images_frame')
+    let images = frame[0].getElementsByClassName('uploaded_image')
+    if (n > images.length - 1) {uploadedSlideIndex = 0}
+    if (n < 0) {uploadedSlideIndex = images.length - 1}
+    if (images.length > 0) {
+      for (let i = 0; i < images.length; i ++) {
+      images[i].style.display = 'none'
+      }
+      images[uploadedSlideIndex].style.display = 'block'
+    }
+  }
+    
+  function plusUploadedSlide(n) {
+    uploadedSlideIndex += n
+    showUploadedSlide(uploadedSlideIndex)
+  }
+    
+</script>
+{% endblock %}

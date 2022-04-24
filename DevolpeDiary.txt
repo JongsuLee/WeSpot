@@ -30,3 +30,6 @@ MyOwnColumn - Post Model 내 profile_id column 문제 해결 >> Migration log, sqllit
 "7일차"
 MyOwnColumn - Post 쓰기 페이지 JS 함수 추가: showPreview - 업로드 이미지 미리보기, showSlide - 이미지 파일 슬라이드
                       Post 읽기 페이지 JS 함수 추가: showSlide - 이미지 파일 슬라이드
+
+"8일차"
+MyOwnColumn - Post 수정 페이지 만들기: 신규 사진 업로드, 업로드된 사진 구분 / 수정된 내용 >> 수정하여 읽기 페이지로 redirect
