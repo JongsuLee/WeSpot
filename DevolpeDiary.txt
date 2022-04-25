@@ -33,3 +33,8 @@ MyOwnColumn - Post 쓰기 페이지 JS 함수 추가: showPreview - 업로드 이미지 미리보�
 
 "8일차"
 MyOwnColumn - Post 수정 페이지 만들기: 신규 사진 업로드, 업로드된 사진 구분 / 수정된 내용 >> 수정하여 읽기 페이지로 redirect
+
+"9일차"
+MyOwnColumn - Column model 생성 > Column : Post = M : N / Column : Tag = M : N
+                      Column 생성 페이지 만들기: 칼럼 데이터 넣기 
+Account - Profile 페이지 구조 수정: Posts 불러오기, Posts 갯수 < 8: 8개 Posts 틀 생성

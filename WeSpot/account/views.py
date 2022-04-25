@@ -63,7 +63,7 @@ def logout(request):
 def profile(request, username):
   user = User.objects.get(username=username)
   profile = Profile.objects.filter(user=user)
-  posts = Post.objects.filter(profile=profile[0])
+  posts = Post.objects.filter(profile=profile[0]).order_by('-created_at')
 
   context = {
     'profile': profile,

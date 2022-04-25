@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block style %}
+ <link rel="stylesheet" href="{% static 'myowncolumn/column_create.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+  <form action="{% url 'myowncolumn:column_create' %}" method="post" enctype="multipart/form-data" class="column_create">
+    {% csrf_token %}
+
+    <input type="file" name="column_image" id="column_image" onchange="showPreview(event)">
+    
+    <div class="preview_image">
+      <div class="image_frame"></div>
+    </div>
+
+    <div class="column_description">
+      <textarea name="description" class="description" placeholder="칼럼에 대한 간략한 소개글을 작성해주세요.(100자이내)"></textarea>
+      <input type="text" placeholder="#해쉬태그" name="tag" class="tag">
+      <button type="submit">생성하기</button>
+    </div>
+
+  </form>
+
+{% endblock %}
+
+{% block script %}
+  <script>
+    function showPreview(event) {
+      console.log(event.target.files[0])
+      let frame = document.getElementsByClassName('image_frame')
+      let src = URL.createObjectURL(event.target.files[0])
+      console.log(src)
+      let image = document.createElement('img')
+      image.src = src
+      image.name = 'image'
+      image.className = 'image'
+      frame[0].append(image)
+    }
+  </script>
+{% endblock %}

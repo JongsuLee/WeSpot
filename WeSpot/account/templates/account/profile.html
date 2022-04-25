@@ -31,67 +31,57 @@
     </div>
     <div class="posts">
 
+      {% for post in posts %}
       <div class="post">
-        <a href="{% url 'myowncolumn:post_detail' posts.0.id%}" class="post_image">
-          <img src="{{posts.1.image_set.all.0.image.url}}" alt="img">
+        <a href="{% url 'myowncolumn:post_detail' post.id %}" class="post_image">
+          <img src="{{post.image_set.all.0.image.url}}" alt="img">
         </a>
         <div class="post_info">
-          <div class="created_at">{{posts.0.created_at}}</div>
-          <div class="writer">{{posts.0.profile.user.username}}</div>
+          <div class="created_at">{{post.created_at}}</div>
+          <div class="writer">{{post.profile.user.username}}</div>
         </div>
       </div>
+      {% endfor %}
 
-      <div class="post">
-        <div class="post_image">
-
-        </div>
-        <div class="post_info">
-          <div class="created_at"></div>
-          <div class="writer"></div>
-        </div>
-      </div>
-
-      <div class="post">
-        <div class="post_image">
-
-        </div>
-        <div class="post_info">
-          <div class="created_at"></div>
-          <div class="writer"></div>
-        </div>
-      </div>
-
-      <div class="post">
-        <div class="post_image">
-
-        </div>
-        <div class="post_info">
-          <div class="created_at"></div>
-          <div class="writer"></div>
-        </div>
-      </div>
-
-      <div class="post">
-        <div class="post_image">
-
-        </div>
-        <div class="post_info">
-          <div class="created_at"></div>
-          <div class="writer"></div>
-        </div>
-      </div>
-
-      <div class="post">
-        <div class="post_image">
-
-        </div>
-        <div class="post_info">
-          <div class="created_at"></div>
-          <div class="writer"></div>
-        </div>
-      </div>
     </div>
     
     
   </div>
+{% endblock %}
+
+{% block script %}
+
+  <script>
+    let posts_frame = document.getElementsByClassName('posts')[0]
+    let posts = document.getElementsByClassName('post')
+
+    if (posts.length < 8) {
+      let posts_length = posts.length
+      let insufficient_posts = 8 - posts_length
+
+      for (let i = 0; i < insufficient_posts; i++) {
+        let new_post = document.createElement('div')
+        new_post.className = 'post'
+        let new_post_a = document.createElement('a')
+        new_post_a.className = 'post_image'
+        let new_post_img = document.createElement('img')
+        new_post_a.append(new_post_img)
+        new_post.append(new_post_a)
+
+        let new_post_info = document.createElement('div')
+        new_post_info.className = 'post_info'
+        let new_post_created_at = document.createElement('div')
+        new_post_created_at.className = 'created_at'
+        new_post_created_at.innerText = 'Not yet'
+        let new_post_writer = document.createElement('div')
+        new_post_writer.className = 'writer'
+        new_post_writer.innerText = '{{posts.0.profile.user.username}}'
+        new_post_info.append(new_post_created_at)
+        new_post_info.append(new_post_writer)
+        new_post.append(new_post_info)
+        posts_frame.append(new_post)
+      }
+    }
+  </script>
+
 {% endblock %}
