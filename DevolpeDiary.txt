@@ -38,3 +38,6 @@ MyOwnColumn - Post 수정 페이지 만들기: 신규 사진 업로드, 업로드된 사진 구분 / 수
 MyOwnColumn - Column model 생성 > Column : Post = M : N / Column : Tag = M : N
                       Column 생성 페이지 만들기: 칼럼 데이터 넣기 
 Account - Profile 페이지 구조 수정: Posts 불러오기, Posts 갯수 < 8: 8개 Posts 틀 생성
+
+"10일차"
+MyOwnColumn - Column 작성 페이지 만들기 中

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'myowncolumn/column_write.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="column">
+    <div class="column_image">
+      {% if column.image %}
+        <img src="{{column.image.url}}" alt="ColumnImage">
+      {% endif %}
+    </div>
+
+    <div class="column_information">
+      <div class="column_description">
+        {{column.description}}
+      </div>
+      <div class="column_tags">
+        {% for tag in column_tags%}
+          <span>#{{tag.tag}} </span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="article_board">
+  
+    <div class="posts">
+
+      {% for post in posts %}
+      <div class="post">
+        <div class="post{{post.id}}_images">
+          <div class="prev" onclick="plusSlide(-1)">&lt;</div>
+          {% for image in post.image_set.all %}
+          <img src="{{image.image.url}}" alt="PostImage">
+          {% endfor %}
+          <div class="next" onclick="plusSlide(1)">&gt;</div>
+        </div>
+        <div class="post_info">
+          <textarea name="description" class="description" cols="30" rows="10">
+            {{post.description}}
+          </textarea>
+          <div class="tags">
+            {% for tag in post.tags %}
+            <span>#{{tag.tag}} </span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+    
+    
+  </div>
+{% endblock %}
+
+{% block script %}
+
+  <script>
+    let posts_frame = document.getElementsByClassName('posts')[0]
+    let post_add = document.createElement('a')
+    post_add.className = 'post_add'
+    // post_add.href = ''
+    let post_add_frame = document.createElement('div')
+    post_add.className = 'post_add_frame'
+    posts_frame.append(post_add)
+    
+  </script>
+
+{% endblock %}
