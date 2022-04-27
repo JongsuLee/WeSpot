@@ -105,3 +105,16 @@ def column_create(request):
     return redirect('account:profile', username=profile.user.username)
 
   return render(request, 'myowncolumn/column_create.html', context)
+
+def column_write(request, column_id):
+  profile = Profile.objects.filter(user=request.user)
+  column = Column.objects.get(id=column_id)
+  posts = Post.objects.filter(columns=column)
+
+  context = {
+    'profile': profile,
+    'column': column,
+    'posts': posts,
+  }
+
+  return render(request, 'myowncolumn/column_write.html', context)

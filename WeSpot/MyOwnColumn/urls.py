@@ -8,4 +8,5 @@ urlpatterns = [
   path('post/detail/<int:post_id>', views.post_detail, name='post_detail'),
   path('post/edit/<int:post_id>', views.post_edit, name='post_edit'),
   path('column/create/', views.column_create, name='column_create'),
+  path('column/write/<int:column_id>', views.column_write, name='column_write'),
 ]

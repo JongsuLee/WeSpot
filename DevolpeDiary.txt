@@ -41,3 +41,6 @@ Account - Profile 페이지 구조 수정: Posts 불러오기, Posts 갯수 < 8: 8개 Posts 틀
 
 "10일차"
 MyOwnColumn - Column 작성 페이지 만들기 中
+
+"11일차"
+MyOwnColumn - Column 작성 페이지 만들기 中 JS 함수 추가: showSlides - column 내 post 별 이미지 파일 슬라이드

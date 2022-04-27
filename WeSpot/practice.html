@@ -1,4 +1,4 @@
-<input type="file" onchange="showPreview(event); showSlide();" multiple>
+<!-- <input type="file" onchange="showPreview(event); showSlide();" multiple>
 <div class="preview">
   <div class="pre" onclick="plusSlide(-1)">&lt;</div>
   <div class="images_frame">사진</div>
@@ -46,4 +46,25 @@
     showSlide(slideIndex)
   }
   
+</script> -->
+
+<div class="post"></div>
+<div class="post"></div>
+<div class="post"></div>
+<div class="post"></div>
+<div class="post"></div>
+
+<script>
+  let posts = document.getElementsByClassName('post')
+  let post_index = []
+  
+  for (let i = 0; i < posts.length; i++) {
+    post_index.push(0)
+  }
+  console.log(post_index)
+  for (let i = 0; i < post_index.length; i++) {
+    post_index[i] = i
+  }
+  console.log(post_index)
+
 </script>
