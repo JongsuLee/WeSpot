@@ -26,13 +26,23 @@ class Post(models.Model):
   created_at = models.TimeField(null=True)
   columns = models.ManyToManyField(Column, related_name='posts')
 
+class PostInColumn(models.Model):
+  
+  column = models.ForeignKey(Column, on_delete=models.CASCADE)
+  post = models.ForeignKey(Post, on_delete=models.PROTECT)
+  description =models.TextField(max_length=None)
+
 class Image(models.Model):
 
   post = models.ForeignKey(Post, on_delete=models.CASCADE)
+  postincolumn = models.ManyToManyField(PostInColumn, related_name='images')
   image = models.ImageField(upload_to=image_upload_path)
 
 class Tag(models.Model):
 
   column = models.ManyToManyField(Column, related_name='tags')
   post = models.ManyToManyField(Post, related_name='tags')
-  tag = models.CharField(max_length=100)
+  postincolumn = models.ManyToManyField(PostInColumn, related_name='tags')
+  tag = models.CharField(max_length=100) 
+
+

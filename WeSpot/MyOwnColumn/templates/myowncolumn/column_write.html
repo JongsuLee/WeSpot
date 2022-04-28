@@ -33,15 +33,15 @@
       {% for post in posts %}
       <div class="post">
         <div class="post_images">
-          <h1>{{forloop.counter0}}</h1>
           <div class="prev" onclick="plusSlide(Number('{{forloop.counter0}}'), -1)">&lt;</div>
           {% for image in post.image_set.all %}
           <img src="{{image.image.url}}" alt="PostImage">
           {% endfor %}
           <div class="next" onclick="plusSlide(Number('{{forloop.counter0}}'), 1)">&gt;</div>
         </div>
+
         <div class="post_info">
-          <textarea name="description" class="description" cols="30" rows="10">
+          <textarea name="description" class="description">
             {{post.description}}
           </textarea>
           <div class="tags">
@@ -55,6 +55,11 @@
 
     </div>
     
+    <a href="{% url 'myowncolumn:column_add' column.id %}" class="post_add">
+      <button>
+        포스트<br>추가하기
+      </button>
+    </a>
     
   </div>
 {% endblock %}

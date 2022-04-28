@@ -118,3 +118,25 @@ def column_write(request, column_id):
   }
 
   return render(request, 'myowncolumn/column_write.html', context)
+
+def column_add(request, column_id):
+  profile = Profile.objects.filter(user=request.user)
+  posts =Post.objects.filter(profile=profile[0]).order_by('-id')
+  column = Column.objects.get(id=column_id)
+
+  context = {
+    'profile': profile,
+    'posts': posts,
+    'column': column,
+  }
+
+  if request.method == 'POST':
+    add_ids = request.POST.getlist('add_id')
+    for add_id in add_ids:
+      post = Post.objects.get(id=add_id)
+      post.columns.add(column)
+      post.save()
+
+    return redirect('myowncolumn:column_write', column_id=column.id)
+
+  return render(request, 'myowncolumn/column_add.html', context)

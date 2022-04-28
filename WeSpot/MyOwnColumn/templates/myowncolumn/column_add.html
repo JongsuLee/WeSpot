@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'myowncolumn/column_add.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="profile">
+    <div class="profile_image">
+      {% if profile.0.image %}
+        <img src="{{profile.0.image.url}}" alt="ProfileImage">
+      {% endif %}
+    </div>
+
+    <div class="profile_information">
+      <h2>{{profile.0.user.first_name}} (ID: {{profile.0.user.username}})</h2>
+      <h3>{{profile.0.user.email}}</h3>
+      <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam odit, voluptatum dignissimos cupiditate officiis doloribus possimus distinctio voluptas, dolorem eius inventore esse a dolor officia iure aperiam minima soluta commodi?</div>
+    </div>
+  </div>
+  <form action="{% url 'myowncolumn:column_add' column.id %}" method="post" class="article_board">
+    {% csrf_token %}
+    
+    <div class="posts">
+
+      {% for post in posts %}
+      <div class="post">
+        <input type="checkbox" name="add_id" value="{{post.id}}" class="add_id">
+        <div class="post_group">
+          <div class="post_image">
+            <img src="{{post.image_set.all.0.image.url}}" alt="img">
+          </div>
+          <div class="post_info">
+            <div class="created_at">{{post.created_at}}</div>
+            <div class="tags">
+              {% for tag in post.tags.all %}
+                <span>#{{tag.tag}} </span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+    
+    <button type="submit">추가하기</button>
+    
+  </form>
+{% endblock %}
+
+{% block script %}
+
+  <script>
+    let posts_frame = document.getElementsByClassName('posts')[0]
+    let posts = document.getElementsByClassName('post')
+
+    if (posts.length < 8) {
+      let posts_length = posts.length
+      let insufficient_posts = 8 - posts_length
+
+      for (let i = 0; i < insufficient_posts; i++) {
+        let post = document.createElement('div')
+        post.className = 'post'
+        let new_post = document.createElement('div')
+        new_post.className = 'post_group'
+        let new_post_a = document.createElement('a')
+        new_post_a.className = 'post_image'
+        let new_post_img = document.createElement('img')
+        new_post_a.append(new_post_img)
+        new_post.append(new_post_a)        
+        post.append(new_post)
+
+        let new_post_info = document.createElement('div')
+        new_post_info.className = 'post_info'
+        let new_post_created_at = document.createElement('div')
+        new_post_created_at.className = 'created_at'
+        new_post_created_at.innerText = 'Not yet'
+        let new_post_writer = document.createElement('div')
+        new_post_writer.className = 'writer'
+        new_post_writer.innerText = '{{posts.0.profile.user.username}}'
+        new_post_info.append(new_post_created_at)
+        new_post_info.append(new_post_writer)
+        new_post.append(new_post_info)
+        posts_frame.append(post)
+        
+      }
+    }
+  </script>
+
+{% endblock %}
