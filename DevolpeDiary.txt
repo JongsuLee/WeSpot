@@ -49,3 +49,6 @@ MyOwnColumn - Column 작성 페이지 만들기 中 JS 함수 추가: showSlides - column 내 
 "12일차"
 MyOwnColumn - Column 작성 페이지 만들기 中 CSS 편집, PostInColumn model 생성
                       Column 내 포스트 추가 페이지 만들기: 체크박스 체크 >> 해당 post columns에 column add
+
+"13일차"
+Profile 페이지 수정 中 Post <-> Column 전환 함수

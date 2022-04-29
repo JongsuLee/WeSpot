@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Profile
-from MyOwnColumn.models import Post, Image
+from MyOwnColumn.models import Column, Post, Image
 
 # Create your views here.
 
@@ -64,10 +64,12 @@ def profile(request, username):
   user = User.objects.get(username=username)
   profile = Profile.objects.filter(user=user)
   posts = Post.objects.filter(profile=profile[0]).order_by('-created_at')
+  columns = Column.objects.filter(profile=profile[0]).order_by('-created_at')
 
   context = {
     'profile': profile,
     'posts': posts,
+    'columns': columns,
   }
 
   return render(request, 'account/profile.html', context)
