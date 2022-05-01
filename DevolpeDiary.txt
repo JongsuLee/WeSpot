@@ -52,3 +52,6 @@ MyOwnColumn - Column 작성 페이지 만들기 中 CSS 편집, PostInColumn model 생성
 
 "13일차"
 Profile 페이지 수정 中 Post <-> Column 전환 함수
+
+"14일차"
+Column 읽기 페이지 만들기: 페이지 구조 및 Post 별 이미지 슬라이드 함수 추가

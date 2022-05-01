@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'myowncolumn/column_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+  <div class="column">
+    <div class="post_navibar">
+      NaviBar
+    </div>
+
+    <div class="posts">
+      
+      {% for post in posts%}
+      <div class="post">
+        <div class="post_images">
+          <div class="prev" onclick="plusSlide(-1, Number('{{forloop.counter0}}'))">&lt;</div>
+          <div class="images_frame">
+            {% for image in post.post.image_set.all %}
+            <img src="{{image.image.url}}" alt="PostImage">
+            {% endfor %}
+          </div>
+          <div class="next" onclick="plusSlide(1, Number('{{forloop.counter0}}'))">&gt;</div>
+        </div>
+
+        <div class="post_description">
+          <div class="description">
+
+          </div>
+          <a href="" class="post_more">
+            더보기
+          </a>
+        </div>
+      {% endfor %}
+      
+      <div class="post">
+        <div class="post_images">
+          <div class="prev" onclick="plusSlide(-1, 0)">&lt;</div>
+          <div class="images_frame">
+            <img src="" alt="image1"><img src="" alt="image2"><img src="" alt="image3"><img src="" alt="image4">
+          </div>
+          <div class="next" onclick="plusSlide(1, 0)">&gt;</div>
+        </div>
+
+        <div class="post_description">
+          <div class="description">
+
+          </div>
+          <a href="" class="post_more">
+            더보기
+          </a>
+        </div>
+        
+      </div>
+
+      <div class="post">
+        <div class="post_images">
+          <div class="prev" onclick="plusSlide(-1, 0)">&lt;</div>
+          <div class="images_frame">
+            <img src="" alt=""><img src="" alt=""><img src="" alt=""><img src="" alt="">
+          </div>
+          <div class="next" onclick="plusSlide(1, 1)">&gt;</div>
+        </div>
+
+        <div class="post_description">
+          <div class="description">
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block script %}
+
+  <script>
+    let slideIndex = [];
+    let posts = document.getElementsByClassName('post')
+    for (let i = 0; i < posts.length; i++) {
+      slideIndex.push(0)
+    }
+
+    showSlide(slideIndex)
+
+    function showSlide(index) {
+      let posts = document.getElementsByClassName("images_frame")
+      for (let i = 0; i < posts.length; i++) {
+        let images = posts[i].getElementsByTagName('img')
+        for (let j = 0; j < images.length; j++) {
+          images[j].style.display = 'none'
+        }
+        images[index[i]].style.display = 'block'
+        console.log(i)
+      }
+    }
+
+    function plusSlide(n, m) {
+      slideIndex[m] += n
+      console.log(slideIndex)
+      let posts = document.getElementsByClassName('post')
+      let images = posts[m].getElementsByTagName('img')
+      if (slideIndex[m] > images.length - 1) {
+        slideIndex[m] = 0
+      } else if (slideIndex[m] < 0) {
+        slideIndex[m] = images.length - 1
+      }
+      showSlide(slideIndex)
+    }
+  </script>
+
+{% endblock %}

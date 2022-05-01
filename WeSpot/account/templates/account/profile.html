@@ -22,10 +22,10 @@
   </div>
   <div class="article_board">
     <div class="navibar">
-      <a href="" class="link" onclick="changeColumnToPost()">
+      <a href="" class="link" onclick="displayPostOrColumn('posts', 'columns')">
         포스트
       </a>
-      <a href="" class="link" onclick="changePostToColumn()">
+      <a href="" class="link" onclick="displayPostOrColumn('columns','posts')">
         칼럼
       </a>
     </div>
@@ -73,93 +73,5 @@
 {% endblock %}
 
 {% block script %}
-
-  <script>
-    let posts_frame = document.getElementsByClassName('posts')[0]
-    let posts = document.getElementsByClassName('post')
-
-    if (posts.length < 8) {
-      let posts_length = posts.length
-      let insufficient_posts = 8 - posts_length
-
-      for (let i = 0; i < insufficient_posts; i++) {
-        let new_post = document.createElement('div')
-        new_post.className = 'post'
-        let new_post_a = document.createElement('a')
-        new_post_a.className = 'post_image'
-        let new_post_img = document.createElement('img')
-        new_post_a.append(new_post_img)
-        new_post.append(new_post_a)
-
-        let new_post_info = document.createElement('div')
-        new_post_info.className = 'post_info'
-        let new_post_created_at = document.createElement('div')
-        new_post_created_at.className = 'created_at'
-        new_post_created_at.innerText = 'Not yet'
-        let new_post_writer = document.createElement('div')
-        new_post_writer.className = 'tags'
-        new_post_writer.innerText = '#tag'
-        new_post_info.append(new_post_created_at)
-        new_post_info.append(new_post_writer)
-        new_post.append(new_post_info)
-        posts_frame.append(new_post)
-      }
-    }
-
-    let columns_frame = document.getElementsByClassName('columns')[0]
-    let columns = document.getElementsByClassName('column')
-
-    if (columns.length < 8) {
-      let columns_length = columns.length
-      let insufficient_columns = 8 - columns_length
-
-      for (let i = 0; i < insufficient_columns; i++) {
-        let new_column = document.createElement('div')
-        new_column.className = 'column'
-        let new_column_a = document.createElement('a')
-        new_column_a.className = 'column_image'
-        let new_column_img = document.createElement('img')
-        new_column_a.append(new_column_img)
-        new_column.append(new_column_a)
-
-        let new_column_info = document.createElement('div')
-        new_column_info.className = 'column_info'
-        let new_column_created_at = document.createElement('div')
-        new_column_created_at.className = 'created_at'
-        new_column_created_at.innerText = 'Not yet'
-        let new_column_writer = document.createElement('div')
-        new_column_writer.className = 'tags'
-        new_column_writer.innerText = '#tag'
-        new_column_info.append(new_column_created_at)
-        new_column_info.append(new_column_writer)
-        new_column.append(new_column_info)
-        columns_frame.append(new_column)
-      }
-    }
-
-    function changePostToColumn() {
-      let posts = document.getElementsByClassName('post')
-      let columns = document.getElementsByClassName('column')
-
-      for (let i = 0; i < posts.length; i++){
-        posts[i].style.display = 'none'
-      }
-      for (let i = 0; i < columns.length; i++){
-        columns[i].style.display = 'block'
-      }
-    }
-
-    function changeColumnToPost() {
-      let posts = document.getElementsByClassName('post')
-      let columns = document.getElementsByClassName('column')
-
-      for (let i = 0; i < posts.length; i++){
-        posts[i].style.display = 'block'
-      }
-      for (let i = 0; i < columns.length; i++){
-        columns[i].style.display = 'none'
-      }
-    }
-  </script>
 
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from account.models import Profile
-from .models import Post, Image, Tag, Column 
+from .models import Post, Image, PostInColumn, Tag, Column 
 
 # Create your views here.
 
@@ -140,3 +140,15 @@ def column_add(request, column_id):
     return redirect('myowncolumn:column_write', column_id=column.id)
 
   return render(request, 'myowncolumn/column_add.html', context)
+
+def column_detail(request, column_id):
+  profile = Profile.objects.filter(user=request.user)
+  column = Column.objects.get(id=column_id)
+  # posts = PostInColumn.objects.filter(column=column)
+
+  context = {
+    'profile': profile,
+    'column': column,
+  }
+
+  return render(request, 'myowncolumn/column_detail.html', context)

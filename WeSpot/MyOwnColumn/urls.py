@@ -10,4 +10,5 @@ urlpatterns = [
   path('column/create/', views.column_create, name='column_create'),
   path('column/write/<int:column_id>', views.column_write, name='column_write'),
   path('column/add/<int:column_id>', views.column_add, name='column_add'),
+  path('column/detail/<int:column_id>', views.column_detail, name='column_detail'),
 ]
